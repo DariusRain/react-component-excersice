@@ -1,26 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react'
 import './App.css';
-
-function App() {
-  return (
-    <div className="App">
+import Bullet from './components/Bullet'
+import BulletForm from './components/BulletForm'
+import Footer from './components/Footer'
+export default class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      bulletElements: [],
+      bulletInputFeild: ''
+    }
+  }
+  addBullet = (e) => {
+    e.preventDefault()
+    this.setState({bulletElements: [...this.state.bulletElements, {bulletText: this.state.bulletInputFeild}]})
+  }
+  handleBulletInput = (e) => {
+    this.setState({bulletInputFeild: e.target.value})
+  }
+  render() {
+    return (
+      <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <h1>⚫ Bullet</h1>
       </header>
+      
+      <BulletForm className="BulletForm" addBullet={this.addBullet} handleBulletInput={this.handleBulletInput}/>
+      <Bullet bulletArray={this.state.bulletElements} />
+      <Footer footerText="Copyright &copy; 2020 Made By Darius Rain" />
     </div>
-  );
+    )
+  }
 }
 
-export default App;
+
