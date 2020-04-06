@@ -6,7 +6,7 @@ export default class Bullet extends Component {
           <ul className="BulletList">
             {this.props.bulletArray.reverse().map(object => {
                 return (
-                        <li>{object.bulletText}</li>   
+                        <li key={object.bulletId}>{object.bulletText}</li>   
                 )
             })}
             </ul>
